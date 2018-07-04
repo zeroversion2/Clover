@@ -102,6 +102,10 @@ public class ThreadPresenter implements ChanThreadLoader.ChanLoaderCallback, Pos
         this.threadPresenterCallback = threadPresenterCallback;
     }
 
+    public void showNoContent() {
+        threadPresenterCallback.showEmpty();
+    }
+
     public void bindLoadable(Loadable loadable) {
         if (!loadable.equals(this.loadable)) {
             if (chanLoader != null) {
@@ -473,7 +477,7 @@ public class ThreadPresenter implements ChanThreadLoader.ChanLoaderCallback, Pos
 
         if (loadable.site.feature(Site.Feature.POST_DELETE) &&
                 databaseManager.getDatabaseSavedReplyManager().isSaved(post.board, post.no)) {
-            menu.add(new FloatingMenuItem(POST_OPTION_DELETE, R.string.delete));
+            menu.add(new FloatingMenuItem(POST_OPTION_DELETE, R.string.post_delete));
         }
 
         menu.add(new FloatingMenuItem(POST_OPTION_EXTRA, R.string.post_more));
@@ -750,6 +754,8 @@ public class ThreadPresenter implements ChanThreadLoader.ChanLoaderCallback, Pos
         void showError(ChanLoaderException error);
 
         void showLoading();
+
+        void showEmpty();
 
         void showPostInfo(String info);
 
