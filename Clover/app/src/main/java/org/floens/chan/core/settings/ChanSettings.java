@@ -112,6 +112,7 @@ public class ChanSettings {
     public static final BooleanSetting developer;
 
     public static final StringSetting saveLocation;
+    public static final StringSetting saveLocationTreeUri;
     public static final BooleanSetting saveOriginalFilename;
     public static final BooleanSetting shareUrl;
     public static final BooleanSetting enableReplyFab;
@@ -188,6 +189,7 @@ public class ChanSettings {
         saveLocation = new StringSetting(p, "preference_image_save_location", Environment.getExternalStorageDirectory() + File.separator + "Clover");
         saveLocation.addCallback((setting, value) ->
                 EventBus.getDefault().post(new SettingChanged<>(saveLocation)));
+        saveLocationTreeUri = new StringSetting(p, "preference_image_save_tree_uri", "");
         saveOriginalFilename = new BooleanSetting(p, "preference_image_save_original", false);
         shareUrl = new BooleanSetting(p, "preference_image_share_url", false);
         enableReplyFab = new BooleanSetting(p, "preference_enable_reply_fab", true);
